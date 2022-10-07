@@ -1,0 +1,9 @@
+[run]
+omit = 
+		test_*
+		setup.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    raise NotImplementedError

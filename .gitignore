@@ -1,0 +1,17 @@
+
+.idea/WhatsappBotPure.iml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/codeStyles/codeStyleConfig.xml
+*.pyc
+*.pyc
+.coverage
+*.pyc
+tests/__pycache__/test_messsager.cpython-39-pytest-7.1.2.pyc
+tests/coverage.xml
+coverage.xml
+set_secret.ps1
+tests/coverage.xml
+.vscode/launch.json

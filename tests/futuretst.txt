@@ -1,0 +1,64 @@
+"""
+#send_message(phone_number="972543455412", body="Hi you!")
+# phone_number, header='', body, button_text, buttons_list
+
+################## 	Test List interactive message ##############################
+bnt1 = List_button('SECTION_1_ROW_1_ID', 'titleMe', 'dicsc1')
+bnt2 = List_button('SECTION_1_ROW_2_ID', 'titleMe', 'dicsc2')
+
+section1 = Section('Section1', [bnt1, bnt2])
+
+bnt1 = List_button('SECTION_2_ROW_1_ID', 'titleMe', 'dicsc21')
+bnt2 = List_button('SECTION_2_ROW_2_ID', 'titleMe', 'dicsc22')
+
+section2 = Section('Section2', [bnt1, bnt2])
+
+buttons_list = [{'id': 'SECTION_1_ROW_1_ID', 'title': 'titleMe', 'description': 'dicsc1'},
+				{'id': 'SECTION_1_ROW_2_ID', 'title': 'titleMe2', 'description': 'dicsc2'}]
+# send_list_message(phone_number="972543455412", body="Hi you!", button_text='buttonText', sections=[section1, section2], header='headerit')
+
+################## 	Test Reply interactive message ##############################
+# bnt1 = Reply_button('SECTION_2_ROW_1_ID', 'titleMe1')
+# bnt2 = Reply_button('SECTION_2_ROW_2_ID', 'titleMe2')
+# send_reply_message(phone_number="972543455412", body="Hi you!", buttons=[bnt1, bnt2], header='headerit')
+
+################## 	Test Location interactive message ##############################
+# send_location_message(phone_number="972543455412", body="Hi you!",
+#					  location=Location(latitude=32.061312, longitude=34.791438, name='Hichal Menore',
+#										address='Tel avivi'))
+
+################## 	Test Contact interactive message ##############################
+address1 = Contact_address(street='street', city='city', country='country', zipcode='zip')
+address2 = Contact_address(street='street1', city='city1', country='country1', country_code='country_code')
+
+email1 = Contact_email(email='asdsad@sda.com')
+email2 = Contact_email(email='2')
+
+name1 = Contact_name(formatted_name='Omry Zur', first_name='first1', last_name='last1')
+
+organization1 = Contact_org(department='dep1', title='title1', company='company1')
+
+phone1 = Contact_phone(phone='0000000001')
+phone2 = Contact_phone(phone='2000000001')
+
+url1 = Contact_url(url='www.google.com')
+url2 = Contact_url(url='www.google.com', type='work')
+
+new_contact = Contact(addresses=[address1, address2], emails=[email1, email2], name=name1, org=organization1, phones=[phone1,phone2], urls=[url1, url2])
+print(new_contact.toPayload())
+
+send_contacts_message(phone_number="972543455412", contacts=[new_contact])
+
+
+################## 	Test Media  message ##############################
+# Files examples - https://example-files.online-convert.com/
+#media = Media(type='image', filename=r'C:\Users\zomry\Downloads\googlelogo.png')
+#media_image = Media(type='image', link=r'https://i.imgur.com/dLSARUC.png')
+#media_audio = Media(type='audio', link=r'https://example-files.online-convert.com/audio/mp3/example.mp3')
+# Check for filename
+#media_document = Media(type='document', link=r'https://example-files.online-convert.com/document/pdf/example.pdf')
+#media_video = Media(type='video', link=r'https://example-files.online-convert.com/video/mp4/example.mp4')
+#media_video = Media(type='video', filename=r'C:\Users\zomry\Downloads\example_small.mp4')
+#media_sticker = Media(type='sticker', link=r'https://raw.githubusercontent.com/viztushar/stickers-internet/master/emojis2.webp')
+#send_media_message(phone_number="972543455412", media=media_sticker)
+"""

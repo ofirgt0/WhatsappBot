@@ -1,0 +1,55 @@
+name: WhatsappBotPure
+
+# Add secrets to env in order to use them in python files
+env: 
+          META_PHONE_ID: ${{ secrets.META_PHONE_ID }}
+          META_AUTH_TOKEN: ${{ secrets.META_AUTH_TOKEN }}
+          PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # The type of runner that the job will run on
+        os: [windows-latest, ubuntu-latest]
+        python-version: [3.6,3.7,3.8]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4.1.0
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install Pytest dependencies
+      run: |
+        pip install pytest
+        pip install codecov
+        pip install pytest-cov
+        pip install pytest-socket
+        pip install pytest-rerunfailures
+    
+    - name: Test with pytest
+      run: |
+        cd tests
+        pytest --cov=../ --cov-report=xml --disable-socket --reruns 2 --reruns-delay 10
+    
+    - name: Upload report to Codecov
+      uses: codecov/codecov-action@v3.1.0
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
